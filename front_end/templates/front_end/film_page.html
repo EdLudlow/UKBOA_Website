@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+{% extends 'front_end/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block body-block %}
+  
+  {% include 'front_end/components/navbar.html' %}
+
+    <div id="main_body" class='container'>
+      <div class='body-text'>
+        <!-- Item Row -->
+        <div class="row">
+          <div class="col-sm-7 text-left"> 
+            <div class ='film_title_container'>
+              <h1>{{ film_data.title }}</h1>
+              <p> {{ film_data.release_date }}</p>
+            </div>
+            <div class ='film_data_container'>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><h5>TOTAL GROSS</h5>
+                    <h2>£{{ film_data.gross|intcomma }}</h2></td>
+                    <td><h5>HIGHEST RANK</h5>
+                      {% if film_data.best_rank == None  %}
+                    <h2>N/A</h2></td>
+                      {% else %} 
+                    <h2>{{ film_data.best_rank|intcomma }}</h2></td>
+                      {% endif %}
+                  </tr>
+                  <tr>
+                    <td><h5>OPENING WEEKEND</h5>
+                      {% if film_data.opening == None  %}
+                        <h2>N/A</h2>
+                      {% else %}
+                      <h2>£{{ film_data.opening|intcomma }}</h2></td>
+                      {% endif %}
+                      <td><h5>LENGTH OF RUN</h5>
+                      {% if film_data.run_length == None  %}
+                      <h2>N/A</h2>
+                        {% else %}
+                      <h2>{{ film_data.run_length|intcomma }} WEEKS</h2></td>
+                        {% endif %}
+                  </tr>
+                  <tr>
+                    <td><h5>SCREEN AVERAGE</h5>
+                      {% if film_data.screen_average == None  %}
+                        <h2>N/A</h2>
+                      {% else %}
+                      <h2>£{{ film_data.screen_average|intcomma }}</h2></td>
+                      {% endif %}
+                      <td><h5>ROTTEN TOMATOES RATING</h5>
+                      {% if film_data.rt == None  %}
+                      <h2>N/A</h2>
+                        {% else %}
+                      <h2>{{ film_data.rt }} </h2></td>
+                        {% endif %}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-sm-5 sidenav">
+            <div class="well">
+              <p><img src="{{ film_data.poster }}" id="film_poster"></p>
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class='container text-center'>
+          <h3>ACTORS</h3>
+
+          <div class="row_scroller">
+            <div class="col-12 sidebar addscrollbar">
+              <!-- Actor Film data -->
+              {% for actors in actor_data_list %}
+              <div class="col-lg-2 col-md-3 col-sm-4 col-6 full-wallet float-left d-inline-block">
+                <div class="col-lg-12 d-inline-block float-right wallet-body text-center m-0 p-0">
+                    <div class="img-container">
+                      <a href=" /actor_page/{{ actors.imdb_id }}">
+                        <img class = "img-fluid h-100" src="{{ actors.headshot }}" alt=""/>
+                        <div class= "overlay">
+                          <span>
+                            <h5>{{ actors.name }}</h5>
+                          </span>
+                        </div>
+                      </a>
+                    </div>
+                </div>
+              </div>
+              {% endfor %}
+              <!-- /Actor Film data -->
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+
+          <div class="col-sm-6 text-center">
+            {% if one_director %}
+              <h3>DIRECTOR</h3>
+            {% else %}
+              <h3>DIRECTORS</h3>
+            {% endif %}
+            
+            {% if one_director %}
+
+            <div class="row_scroller">
+              <div class="col-12 sidebar addscrollbar">
+                <!-- Director Film data -->
+                {% for directors in director_data_list %}
+                <div class="col-sm-4 col-3 full-wallet float-left d-inline-block">
+                </div>
+                <div class="col-sm-4 col-6 full-wallet float-left d-inline-block">
+                  <div class="col-lg-12 d-inline-block float-right wallet-body text-center m-0 p-0">
+                      <div class="img-container">
+                        <a href=" /director_page/{{ directors.imdb_id }}">
+                          <img class = "img-fluid h-100" src="{{ directors.headshot }}" alt=""/>
+                          <div class= "overlay">
+                            <span>
+                              <h5>{{ directors.name }}</h5>
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-3 full-wallet float-left d-inline-block">
+                </div>
+                {% endfor %}
+                <!-- /Director Film data -->
+              </div>
+            </div>
+
+            {% elif three_directors %}
+
+            <div class="row_scroller">
+              <div class="col-12 sidebar addscrollbar">
+                <!-- Director Film data -->
+                {% for directors in director_data_list %}
+                <div class="col-sm-4 col-6 full-wallet float-left d-inline-block">
+                  <div class="col-lg-12 d-inline-block float-right wallet-body text-center m-0 p-0">
+                      <div class="img-container">
+                        <a href=" /director_page/{{ directors.imdb_id }}">
+                          <img class = "img-fluid h-100" src="{{ directors.headshot }}" alt=""/>
+                          <div class= "overlay">
+                            <span>
+                              <h5>{{ directors.name }}</h5>
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+                </div>
+                {% endfor %}
+                <!-- /Director Film data -->
+              </div>
+            </div>
+            
+            {% else %}
+
+            <div class="row_scroller">
+              <div class="col-12 sidebar addscrollbar">
+                <!-- Director Film data -->
+                <div class="col-sm-2 col-0 full-wallet float-left d-inline-block"></div>
+                {% for directors in director_data_list %}
+                <div class="col-sm-4 col-6 full-wallet float-left d-inline-block">
+                  <div class="col-lg-12 d-inline-block float-right wallet-body text-center m-0 p-0">
+                      <div class="img-container">
+                        <a href=" /director_page/{{ directors.imdb_id }}">
+                          <img class = "img-fluid h-100" src="{{ directors.headshot }}" alt=""/>
+                          <div class= "overlay">
+                            <span>
+                              <h5>{{ directors.name }}</h5>
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+                </div>
+                {% endfor %}
+                <div class="col-sm-2 col-0 full-wallet float-left d-inline-block"></div>
+                <!-- /Director Film data -->
+              </div>
+            </div>
+
+            {% endif %}
+          </div>
+
+          <div class="col-sm-6 text-center">
+            {% if one_writer %}
+              <h3>WRITER</h3>
+            {% else %}
+              <h3>WRITERS</h3>
+            {% endif %}  
+            
+            {% if one_writer %}
+
+            <div class="row_scroller">
+              <div class="col-12 sidebar addscrollbar">
+                <!-- writers Film data -->
+                {% for writers in writer_data_list %}
+                <div class="col-sm-4 col-3 full-wallet float-left d-inline-block">
+                </div>
+                <div class="col-sm-4 col-6 full-wallet float-left d-inline-block">
+                  <div class="col-lg-12 d-inline-block float-right wallet-body text-center m-0 p-0">
+                      <div class="img-container">
+                        <a href=" /writer_page/{{ writers.imdb_id }}">
+                          <img class = "img-fluid h-100" src="{{ writers.headshot }}" alt=""/>
+                          <div class= "overlay">
+                            <span>
+                              <h5>{{ writers.name }}</h5>
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-3 full-wallet float-left d-inline-block">
+                </div>
+                {% endfor %}
+                <!-- /writer Film data -->
+              </div>
+            </div>
+
+            {% elif three_writers %}
+
+            <div class="row_scroller">
+              <div class="col-12 sidebar addscrollbar">
+                <!-- Writers Film data -->
+                {% for writers in writer_data_list %}
+                <div class="col-sm-4 col-6 full-wallet float-left d-inline-block">
+                  <div class="col-lg-12 d-inline-block float-right wallet-body text-center m-0 p-0">
+                      <div class="img-container">
+                        <a href=" /writer_page/{{ writers.imdb_id }}">
+                          <img class = "img-fluid h-100" src="{{ writers.headshot }}" alt=""/>
+                          <div class= "overlay">
+                            <span>
+                              <h5>{{ writers.name }}</h5>
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+                </div>
+                {% endfor %}
+                <!-- /Writers Film data -->
+              </div>
+            </div>
+            
+            {% else %}
+
+            <div class="row_scroller">
+              <div class="col-12 sidebar addscrollbar">
+                <!-- Writers Film data -->
+                <div class="col-sm-2 col-0 full-wallet float-left d-inline-block"></div>
+                {% for writers in writer_data_list %}
+                <div class="col-sm-4 col-6 full-wallet float-left d-inline-block">
+                  <div class="col-lg-12 d-inline-block float-right wallet-body text-center m-0 p-0">
+                      <div class="img-container">
+                        <a href=" /writer_page/{{ writers.imdb_id }}">
+                          <img class = "img-fluid h-100" src="{{ writers.headshot }}" alt=""/>
+                          <div class= "overlay">
+                            <span>
+                              <h5>{{ writers.name }}</h5>
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+                </div>
+                {% endfor %}
+                <div class="col-sm-2 col-0 full-wallet float-left d-inline-block"></div>
+                <!-- /Director Film data -->
+              </div>
+            </div>
+
+            {% endif %}
+          </div>
+        </div>
+    </div>
+  </div>
+
+{% endblock %}

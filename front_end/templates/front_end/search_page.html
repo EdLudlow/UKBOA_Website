@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% extends 'front_end/base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+{{ q_value }} - UKBOA Search Results
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'front_end/search_page.css' %}">
+{% endblock %}
+
+
+{% block body-block %}
+
+{% include 'front_end/components/navbar.html' %}
+
+  <div class = "search_result_holder">
+    <div class="container col-md-8 col-md-offset-2">
+
+      {% for queries in query %}
+      {% if queries.title %}
+
+      <div class="card mb-3">
+        <div class="row no-gutters align-items-center">
+          <div class="col-md-2">
+            <a href="/film_page/{{ queries.imdb_id }}">
+              <img src="{{ queries.poster }}" class="card-img" alt="...">
+            </a>
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <a href="/film_page/{{ queries.imdb_id }}">
+                <h3 class="card-title">{{ queries.title|title }}</h3>
+              </a>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% else %}
+
+      <div class="card mb-3">
+        <div class="row no-gutters align-items-center">
+          <div class="col-md-2">
+            <a href="/actor_page/{{ queries.imdb_id }}">
+              <img src="{{ queries.headshot }}" class="card-img" alt="NOT HERE" >
+            </a>
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <a href="/actor_page/{{ queries.imdb_id }}">
+                <h3 class="card-title">{{ queries.name }}</h3>
+              </a>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% endif %}
+      {% endfor %}
+      <div class="row centered-form center-block">
+        <div class="container col-md-10 col-md-offset-1">
+          {% if is_paginated %}
+
+            {% if page_obj.has_previous %}
+            <a class= "btn btn-outline-info mb-4" href="?q={{ q_value }}&page=1">First</a>
+            <a class= "btn btn-outline-info mb-4" href="?q={{q_value}}&page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+            
+              {% if page_obj.number == num %}
+                <a class= "btn btn-info mb-4" href="?q={{ q_value }}/?page={{ num }}">{{ num }}</a>
+              {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                  <a class= "btn btn-outline-info mb-4" href="?q={{q_value }}&page={{ num }}">{{ num }}</a>
+              {% endif %}
+            
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+              <a class= "btn btn-outline-info mb-4" href="?q={{ q_value }}&page={{ page_obj.next_page_number }}">Next</a>
+              <a class= "btn btn-outline-info mb-4" href="?q={{ q_value }}&page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+          
+          {% endif %}
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+{% endblock %}

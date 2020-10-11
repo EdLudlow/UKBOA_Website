@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% extends 'front_end/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block body-block %}
+
+<div class='body-text'>
+  <div class ='container'>
+    <div class="col-sm-9 text-left"> 
+      <div class ='director_name_container'>
+        <h1>{{ director.name }}</h1>
+        <p> {{ director.dob }}</p>
+      </div>
+      <div class ='dirctor_data_container'>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><h5>TOTAL GROSS AT UK CINEMAS</h5>
+                <h2>£{{ total_gross|intcomma }}</h2></td>
+              <td><h5>AVERAGE BOX OFFICE RETURN</h5>
+                <h2>£{{ film_average|intcomma }} </h2></td>
+            </tr>
+            <tr>
+              <td><h5>CAREER SCREEN AVERAGE</h5>
+                <h2>£{{ career_screen_average|intcomma }} </h2></td>
+              <td><h5>WEEKS IN UK CINEMAS</h5>
+                <h2> {{ weeks_in_cinema }} </h2></td>  
+            </tr>
+          </tbody>
+        </table>
+      </div>  
+    </div>
+    <div class="col-sm-3 sidenav">
+        <div class="well">
+            <p><img src="{{ director_detail.headshot }}" id="film_poster"></p>
+        </div>
+    </div>
+  </div>
+  <div class='container'>
+    <div class='whitespace'>
+    </div>
+      <div class='container text-left'>
+        <h3>ANALYTICS:</h3>
+
+        {% if graph %}
+        {{ graph|safe }}
+        {% endif %}
+
+      </div>
+      <div class='container text-left'>
+
+        {% if bar_div %}
+        {{ bar_div|safe }}
+        {% endif %}
+
+      </div>
+      <div class = 'container text-left'>
+        <p>*All records since 2001</p>
+      </div>
+        <div class='container text-left'>
+          <h3>FILMS:</h3>
+        </div>
+            <div class="container-fluid">
+              <div class = "image_padding">
+                  {% for film in director_film_list %}
+                  <div class = "col-xs-3 col-sm-2 col-lg-1">
+                      <figure>
+                          <a href=" /film_page/{{ film.imdb_id }}">
+                            <img src="{{ film.poster }}" width ='90%' height='100%'>
+                          </a>
+                          <a href="/film_page/{{ film.imdb_id }}">
+                            <figcaption class="figure-caption text-center">{{ film.title }}</figcaption>
+                          </a>
+                      </figure>
+                  </div>
+                {% endfor %}
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+{% endblock %}

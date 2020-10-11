@@ -1,0 +1,68 @@
+/* Landing screen */
+
+.home-img-container{
+  width: 100%;
+  height: 100%;
+}
+
+.logo{
+  top: 50%;
+  left: 20%;
+}
+
+/* Search bar */
+
+#navbar_search_container{
+  background: none;
+  border: none;
+}
+
+#navbar_searchbar{
+  background: none;
+  border-radius: 0;
+  border-bottom-width:3px !important;
+}
+
+.form-control::-moz-placeholder{
+  color: white;
+  opacity:1
+}
+
+.form-control:-ms-input-placeholder{
+  color:white;
+}
+
+.form-control::-webkit-input-placeholder{
+  color:white;
+}
+
+#navbar_button{
+  background-color: black;
+  margin: 0px;
+  padding:0px;
+}
+
+#search_button{
+  background-color: black;
+  margin: 0px;
+  margin-right: 15px;
+  padding:0px;
+  border:none;
+}
+
+
+
+/* Paralax */
+
+h1{
+  color: white;
+}
+
+h3{
+  color: white;
+}
+
+body{
+  background-color: black;
+}
+

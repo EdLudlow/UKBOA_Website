@@ -1,0 +1,133 @@
+/* navbar */
+
+.navbar{
+  background-color: red;
+}
+
+h1{
+  color: RED;
+}
+
+.navbar-brand{
+  margin-right: 30px;
+  margin-left: 10px;
+}
+
+#navbar_container{
+  background-color: black;
+  border-radius:0;
+}
+
+#navbar_search_container{
+  background-color: black;
+  border: none;
+}
+
+#navbar_searchbar{
+  background-color: black;
+  border-radius: 0;
+}
+
+#navbar_button{
+  background-color: black;
+  margin: 0px;
+  padding:0px;
+}
+
+#search_button{
+  background-color: black;
+  margin: 0px;
+  margin-right: 15px;
+  padding:0px;
+  border:none;
+}
+
+.nav-item{
+  margin-right: 15px;
+}
+
+#film_poster{
+  width:80%
+}
+
+#main_body{
+  padding-top: 5%;
+}
+
+
+/* Actor Scroll bar */
+
+.row_scroller{
+  padding-top: 20px;
+}
+
+.sidebar {
+  background-color: #ececec;
+  width: 3000px;
+  height: 230px;
+  /*overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;*/
+}
+
+.full-wallet{
+  background-color: thistle;
+  padding:0px;
+  margin: 0px;
+  border: 0px;
+}
+
+.wallet-body{
+  height: 100%;
+  padding:0px;
+  margin: 0px;
+  border: 0px;
+}
+
+.raise {
+  padding-top: 8px;
+  margin-bottom: 8px;
+}
+
+.balance {
+  color: #697377;
+  font-size: 0.8em;
+  margin-bottom: -3px;
+}
+
+.amount {
+  color: #697377;
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.addscrollbar{
+  overflow-x: scroll;
+  display: flex;
+}
+
+.img-container{
+  height:100%;
+}
+
+.img-container .overlay{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgb(0, 0, 0, 0.6);
+  opacity:0;
+  transition:opacity 500ms ease-in-out;
+}
+.img-container:hover .overlay{
+  opacity:1;
+}
+.overlay span{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  color:rgb(255, 255, 255);
+}

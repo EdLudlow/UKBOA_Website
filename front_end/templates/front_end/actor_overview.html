@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% extends 'front_end/base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+
+{% block body-block %}
+
+ {% include 'front_end/components/navbar.html' %}
+    
+  <div class="container-fluid text-center mt-5">    
+      <div class="col-sm-1 sidenav">
+      </div>
+      <div class="col-sm-10">
+
+        <div class="row">
+          <div class = "col-sm-6">
+            <table class="table">
+              <thead>
+                <h5>TOP 10 ACTORS BY CUMULATIVE FILM GROSS AT UK BOX OFFICE</h5>
+              </thead>
+              <tbody>
+                {% for actor in actors_gross %}
+                <tr>
+                  <td class= "align-middle">
+                    {{ forloop.counter }}
+                  </td>
+                  <td class= "align-middle">
+                    <div class="well">
+                      <p><img src="{{ actor.headshot }}" class="mx-auto d-block" id="film_poster" style="width: 50px"></p>
+                  </div>
+                  </td>
+                  <td class= "align-middle">
+                    <a href="/actor_page/{{ actor.imdb_id }}">{{ actor.name }}</a>
+                  </td>
+                  <td class= "align-middle">
+                    £{{ actor.career_gross|intcomma }}
+                  </td>
+                </tr>
+                {% endfor %}
+                
+              </tbody>
+            </table>
+          </div>
+          <div class = "col-sm-6">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class = "col-sm-6">
+          </div>
+          <div class = "col-sm-6">            
+            <table class="table">
+              <thead>
+                <h5>TOP 10 ACTORS BY NUMBER OF WEEKS THEIR FILMS APPEARED AT THE BRITISH BOX OFFICE</h5>
+              </thead>
+              <tbody>
+                {% for actor in actors_bo_length %}
+                <tr>
+                  <td class= "align-middle">
+                    {{ forloop.counter }}
+                  </td>
+                  <td class= "align-middle">
+                    <div class="well">
+                      <p><img src="{{ actor.headshot }}" class="mx-auto d-block" id="film_poster" style="width: 50px"></p>
+                  </div>
+                  </td>
+                  <td class= "align-middle">
+                    <a href="/actor_page/{{ actor.imdb_id }}">{{ actor.name }}</a>
+                  </td>
+                  <td class= "align-middle">
+                    {{ actor.weeks_at_uk_cinemas }} weeks
+                  </td>
+                </tr>
+                {% endfor %}
+                
+              </tbody>
+            </table>
+          </div>
+          <div class = "col-sm-6">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class = "col-sm-6">
+
+            <table class="table">
+              <thead>
+                <h5>TOP 5 ACTORS BY FILM APPEARANCES</h5>
+              </thead>
+              <tbody>
+                {% for actor in actors_num_films %}
+                <tr>
+                  <td class= "align-middle">
+                    {{ forloop.counter }}
+                  </td>
+                  <td class= "align-middle">
+                    <div class="well">
+                      <p><img src="{{ actor.headshot }}" class="mx-auto d-block" id="film_poster" style="width: 50px"></p>
+                  </div>
+                  </td>
+                  <td class= "align-middle">
+                    <a href="/actor_page/{{ actor.imdb_id }}">{{ actor.name }}</a>
+                  </td>
+                  <td class= "align-middle">
+                    {{ actor.num_of_films|intcomma }}
+                  </td>
+                </tr>
+                {% endfor %}
+                
+              </tbody>
+            </table>
+          </div>
+          <div class = "col-sm-6">
+          </div>
+        </div>
+    </div>
+    <div class="col-sm-1 sidenav">
+    </div>
+  </div>
+{% endblock %}
