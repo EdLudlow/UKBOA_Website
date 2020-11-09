@@ -47,27 +47,44 @@
           <div class='container text-left'>
             <h3>ANALYTICS:</h3>
 
+          </div>
+        </div>
+        <div class ="row">
+          <div class='container text-left'>
+
+            {% if scatter_div %}
+            {{ scatter_div|safe }}
+            {% endif %}
 
           </div>
         </div>
         <div class ="row">
           <div class='container text-left'>
 
-            {% if bar_div %}
-            {{ bar_div|safe }}
-            {% endif %}
+          {% autoescape off %}
+          {{ bar_div }}
+          {% endautoescape %}
 
           </div>
         </div>
+        <div class ="row">
+          <div class='container text-left'>
+
+          {% if pie_div %}
+          {% autoescape off %}
+          {{ pie_div }}
+          {% endautoescape %}
+          {% endif %}
+
+          </div>
+        </div>
+
           <div class = 'container text-left'>
             <p>*All records since 2001</p>
           </div>
             <div class='container text-left'>
-              <h3>FILMS:</h3>
+              <h3>FILMS</h3>
             </div>
-
-            <br>
-
             <div class="row_scroller">
               <div class="col-12 sidebar addscrollbar">
                 <!-- Actor Film data -->
@@ -91,10 +108,10 @@
                 <!-- /Actor Film data -->
               </div>
             </div>
-
             <br>
       </div>
     </div>
+
   </div>
 
 {% endblock %}

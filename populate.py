@@ -385,8 +385,85 @@ def calculate_no_of_writer_joins():
         writer_model.save()
         print(writer.name)
 
+
+#UPKEEP FUNCTIONS
+
+def delete_model_data():
+    talent_list = FilmTalent.objects.all()
+    for talent in talent_list:
+        talent.delete()
+
+def add_talent_type():
+    actors_list = Actor.objects.all()
+    for actor in actors_list:
+        actor.talent_type = 1
+        actor.save()
+    print(actor.talent_type)
+
+    directors_list = Director.objects.all()
+    for director in directors_list:
+        director.talent_type = 2
+        director.save()
+    print(director.talent_type)
+
+    writers_list = Writer.objects.all()
+    for writer in writers_list:
+        writer.talent_type = 3
+        writer.save()
+    print(writer.talent_type)
+
+def populate_annual_bo_returns():
+    for year in range(2002,2021):
+        print(year)
+        films_that_year = Film.objects.filter(release_date__year = year)
+        print(films_that_year)
+        for films in films_that_year:
+            print(films.gross)
+            for film_talent in films.writers.all():
+                if year == 2002:
+                    film_talent.gross_2002 = int(film_talent.gross_2002 or 0) + films.gross
+                elif year == 2003:
+                    film_talent.gross_2003 = int(film_talent.gross_2003 or 0) + films.gross
+                elif year == 2004:
+                    film_talent.gross_2004 = int(film_talent.gross_2004 or 0) + films.gross
+                elif year == 2005:
+                    film_talent.gross_2005 = int(film_talent.gross_2005 or 0) + films.gross                    
+                elif year == 2006:
+                    film_talent.gross_2006 = int(film_talent.gross_2006 or 0) + films.gross
+                elif year == 2007:
+                    film_talent.gross_2007 = int(film_talent.gross_2007 or 0) + films.gross
+                elif year == 2008:
+                    film_talent.gross_2008 = int(film_talent.gross_2008 or 0) + films.gross
+                elif year == 2009:
+                    film_talent.gross_2009 = int(film_talent.gross_2009 or 0) + films.gross
+                elif year == 2010:
+                    film_talent.gross_2010 = int(film_talent.gross_2010 or 0) + films.gross
+                elif year == 2011:
+                    film_talent.gross_2011 = int(film_talent.gross_2011 or 0) + films.gross
+                elif year == 2012:
+                    film_talent.gross_2012 = int(film_talent.gross_2012 or 0) + films.gross
+                elif year == 2013:
+                    film_talent.gross_2013 = int(film_talent.gross_2013 or 0) + films.gross
+                elif year == 2014:
+                    film_talent.gross_2014 = int(film_talent.gross_2014 or 0) + films.gross
+                elif year == 2015:
+                    film_talent.gross_2015 = int(film_talent.gross_2015 or 0) + films.gross
+                elif year == 2016:
+                    film_talent.gross_2016 = int(film_talent.gross_2016 or 0) + films.gross
+                elif year == 2017:
+                    film_talent.gross_2017 = int(film_talent.gross_2017 or 0) + films.gross
+                elif year == 2018:
+                    film_talent.gross_2018 = int(film_talent.gross_2018 or 0) + films.gross
+                elif year == 2019:
+                    film_talent.gross_2019 = int(film_talent.gross_2019 or 0) + films.gross
+                elif year == 2020:
+                    film_talent.gross_2020 = int(film_talent.gross_2020 or 0) + films.gross
+                film_talent.save()
+
+def correct_dates():
+    
+
 if __name__ == "__main__":
     print("populating") 
-    calculate_no_of_writer_joins()  
     print("populated")
  

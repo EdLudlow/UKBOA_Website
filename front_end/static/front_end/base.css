@@ -1,5 +1,9 @@
 /* navbar */
 
+.body{
+  font-family: 'Ramabhadra', sans-serif;
+}
+
 .navbar{
   background-color: red;
 }
@@ -18,14 +22,33 @@ h1{
   border-radius:0;
 }
 
+
 #navbar_search_container{
-  background-color: black;
+  background: none;
   border: none;
 }
 
 #navbar_searchbar{
-  background-color: black;
+  background: none;
   border-radius: 0;
+  border-bottom-width:3px !important;
+}
+
+.form-control::-moz-placeholder{
+  color: white;
+  opacity:1
+}
+
+.form-control:-ms-input-placeholder{
+  color:white;
+}
+
+.form-control::-webkit-input-placeholder{
+  color:white;
+}
+
+.form-control[type="text"]{
+  color: #FFF;
 }
 
 #navbar_button{

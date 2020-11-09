@@ -33,10 +33,35 @@
           <div class="col-md-10">
             <div class="card-body">
               <a href="/film_page/{{ queries.imdb_id }}">
-                <h3 class="card-title">{{ queries.title|title }}</h3>
+                <h3 class="card-title">{{ queries.title|title }}</h3> 
               </a>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <p class="card-text"><small class="text-muted">{{ queries.release_date }}</small></p>
+              <p class="card-text">
+                Director: 
+                {% for director in queries.director.all %} 
+                  {% if forloop.last %} 
+                    <a href="/director_page/{{ director.imdb_id }}">{{ director.name }}</a> 
+                  {% else %}
+                    <a href="/director_page/{{ director.imdb_id }}">{{ director.name }}</a>,
+                  {% endif %}
+                {% endfor %} <br>
+                Writer: 
+                {% for writer in queries.writers.all %} 
+                  {% if forloop.last %} 
+                    <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a> 
+                  {% else %}
+                    <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>,
+                  {% endif %}
+                {% endfor %} <br>
+              Starring:
+              {% for actor in queries.actors.all|slice:":5" %} 
+                {% if forloop.last %} 
+                  <a href="/actor_page/{{ actor.imdb_id }}">{{ actor.name }}</a> 
+                {% else %}
+                  <a href="/actor_page/{{ actor.imdb_id }}">{{ actor.name }}</a>,
+                {% endif %}
+              {% endfor %}
+              </p>
             </div>
           </div>
         </div>
@@ -56,8 +81,22 @@
               <a href="/actor_page/{{ queries.imdb_id }}">
                 <h3 class="card-title">{{ queries.name }}</h3>
               </a>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <p class="card-text"><small class="text-muted">
+                {% if queries.talent_type == 1 %} 
+                  Actor
+                {% elif queries.talent_type == 2 %}
+                  Director
+                {% else %}
+                  Writer
+                {% endif %}</small></p>
+              <p class="card-text">Films include:
+                {% for films in queries.film_actors.all|slice:":5" %} 
+                  {% if forloop.last %}
+                    <a href="/film_page/{{ films.imdb_id }}">{{ films.title|title }}</a> 
+                  {% else %}
+                    <a href="/film_page/{{ films.imdb_id }}">{{ films.title|title }},</a> 
+                  {% endif %}
+                {% endfor %}</p>
             </div>
           </div>
         </div>
@@ -65,35 +104,33 @@
 
       {% endif %}
       {% endfor %}
-      <div class="row centered-form center-block">
-        <div class="container col-md-10 col-md-offset-1">
+      <div class="row">
+        <div class="col-md-8 mx-auto text-center">
           {% if is_paginated %}
 
             {% if page_obj.has_previous %}
-            <a class= "btn btn-outline-info mb-4" href="?q={{ q_value }}&page=1">First</a>
-            <a class= "btn btn-outline-info mb-4" href="?q={{q_value}}&page={{ page_obj.previous_page_number }}">Previous</a>
+            <a class= "btn btn-outline-danger mb-4" href="?q={{q_value}}&page={{ page_obj.previous_page_number }}">←</a>
             {% endif %}
 
             {% for num in page_obj.paginator.page_range %}
             
               {% if page_obj.number == num %}
-                <a class= "btn btn-info mb-4" href="?q={{ q_value }}/?page={{ num }}">{{ num }}</a>
+                <a class= "btn btn-danger mb-4" href="?q={{ q_value }}/?page={{ num }}">{{ num }}</a>
               {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                  <a class= "btn btn-outline-info mb-4" href="?q={{q_value }}&page={{ num }}">{{ num }}</a>
+                  <a class= "btn btn-outline-danger mb-4" href="?q={{q_value }}&page={{ num }}">{{ num }}</a>
               {% endif %}
             
             {% endfor %}
 
             {% if page_obj.has_next %}
-              <a class= "btn btn-outline-info mb-4" href="?q={{ q_value }}&page={{ page_obj.next_page_number }}">Next</a>
-              <a class= "btn btn-outline-info mb-4" href="?q={{ q_value }}&page={{ page_obj.paginator.num_pages }}">Last</a>
+              <a class= "btn btn-outline-danger mb-4" href="?q={{ q_value }}&page={{ page_obj.next_page_number }}">→</a>
             {% endif %}
           
           {% endif %}
         </div>
       </div>
-      </div>
     </div>
+  </div>
 
 
 {% endblock %}

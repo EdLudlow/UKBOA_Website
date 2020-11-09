@@ -36,6 +36,10 @@
   color:white;
 }
 
+.form-control[type="text"]{
+  color: #FFF;
+}
+
 #navbar_button{
   background-color: black;
   margin: 0px;
