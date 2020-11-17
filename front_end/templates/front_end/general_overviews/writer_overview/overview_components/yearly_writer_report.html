@@ -1,0 +1,1224 @@
+<!doctype html>
+{% load static %}
+{% load humanize %}
+
+
+<h3>TOP WRITERS BY BRITISH BOX OFFICE BY YEAR 2002-2020</h3>
+
+<div class="container-fluid text-center mt-5">    
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+      <div class='tab-pane container fade' id='s2002'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2002</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2002|slice:":5" %}
+                      <tr class = "table-row ">
+                        <td class= "align-middle">
+                          {{ forloop.counter }}
+                        </td>
+                        <td class= "align-middle">
+                          <div class="well">
+                            <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                        </div>
+                        </td>
+                        <td class= "align-middle">
+                          <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                        </td>
+                        <td class= "align-middle">
+                          £{{ writer.gross_2002|intcomma }}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2002|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2002|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='tab-pane container fade' id='s2003'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2003</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2003|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="writer/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2003|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2003|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2003|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='tab-pane container fade' id='s2004'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2004</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2004|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2004|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2004|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2004|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='tab-pane container fade' id='s2005'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2005</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2005|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2005|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2005|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2005|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='tab-pane container fade' id='s2006'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2006</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2006|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2006|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2006|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2006|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='tab-pane container fade' id='s2007'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2007</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2007|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2007|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2007|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2007|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='tab-pane container fade' id='s2008'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2008</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2008|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2008|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2008|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2008|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class='tab-pane container fade' id='s2009'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2009</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2009|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2009|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2009|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2009|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class='tab-pane container fade' id='s2010'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2010</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2010|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2010|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2010|slice:"5:10"  %}
+                      <tr class = "table-row ">
+                        <td class= "align-middle">
+                          {{ forloop.counter|add:"5" }}
+                        </td>
+                        <td class= "align-middle">
+                          <div class="well">
+                            <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                        </div>
+                        </td>
+                        <td class= "align-middle">
+                          <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                        </td>
+                        <td class= "align-middle">
+                          £{{ writer.gross_2006|intcomma }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class='tab-pane container fade' id='s2011'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2011</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2011|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2011|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2011|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ v.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2011|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class='tab-pane container fade' id='s2012'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2012</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2012|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2012|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2012|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2012|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='tab-pane container fade' id='s2013'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2013</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2013|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2013|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2013|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2013|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='tab-pane container fade' id='s2014'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2014</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2014|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2014|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2014|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2014|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='tab-pane container fade' id='s2015'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2015</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2015|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writers.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2015|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2015|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2015|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='tab-pane container fade' id='s2016'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2016</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2016|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2016|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2016|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2016|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='tab-pane container fade' id='s2017'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2017</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2017|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2017|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2017|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2017|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class='tab-pane container fade' id='s2018'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2018</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2018|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2018|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2018|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2018|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='tab-pane container fade' id='s2019'>
+        <div class="container-fluid text-center">    
+          <div class="container"> 
+          <h5>2019</h5>
+          <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2019|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2019|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2019|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2019|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+      <div class='tab-pane container fade in show active' id='s2020'>
+        <div class="container-fluid text-center mt-5">    
+          <div class="container"> 
+            <h5>2020</h5>
+            <br>
+            <div class = "row">  
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2020|slice:":5" %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2020|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div class = "col-sm-6">
+                <table class="table">
+                  <tbody>
+                    {% for writer in writers_2020|slice:"5:10"  %}
+                    <tr class = "table-row ">
+                      <td class= "align-middle">
+                        {{ forloop.counter|add:"5" }}
+                      </td>
+                      <td class= "align-middle">
+                        <div class="well">
+                          <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                      </div>
+                      </td>
+                      <td class= "align-middle">
+                        <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                      </td>
+                      <td class= "align-middle">
+                        £{{ writer.gross_2020|intcomma }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div> 
+        </div>     
+      </div>
+
+    </div>
+    <nav class="tabbable"> 
+      <div class="tab-slider">
+        <div class= "container ">
+          <div class="wrap">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2002'>2002</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2003'>2003</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2004'>2004</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2005'>2005</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2006'>2006</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2007'>2007</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2008'>2008</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2009'>2009</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2010'>2010</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2011'>2011</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2012'>2012</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2013'>2013</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2014'>2014</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2015'>2015</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2016'>2016</a>
+              </li> 
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2017'>2017</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2018'>2018</a>
+              </li>
+              <li class='nav-item'>
+                <a class='nav-link ' data-toggle='tab' href='#s2019'>2019</a>
+              </li>      
+              <li class='nav-item'>
+                <a class='nav-link active' data-toggle='tab' href='#s2020'>2020</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </nav>
+</div>

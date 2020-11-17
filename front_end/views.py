@@ -9,13 +9,26 @@ from itertools import chain
 from datetime import date
 import collections
 
+################################################################################################
+################################################################################################
+####################################### HOME PAGE #############################################
+################################################################################################
+################################################################################################
 
-# Create your views here.
 class HomePage(TemplateView):
     template_name = 'front_end/home_page.html'
 
+class AboutPage(TemplateView):
+    template_name = 'front_end/about.html'
+
+################################################################################################
+################################################################################################
+####################################### FILM PAGES #############################################
+################################################################################################
+################################################################################################
+
 class FilmPage(TemplateView):
-    template_name = 'front_end/film_page.html'
+    template_name = 'front_end/entries/film_page.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -67,7 +80,7 @@ class FilmPage(TemplateView):
         return context
 
 class GeneralFilmsPage(TemplateView):
-    template_name = 'front_end/general_films_page.html'
+    template_name = 'front_end/general_overviews/film_overview/films_home.html'
 
     def get_context_data(self, **kwargs):
         context = super(GeneralFilmsPage, self).get_context_data(**kwargs)
@@ -131,8 +144,14 @@ class GeneralFilmsPage(TemplateView):
 
         return context
 
+################################################################################################
+################################################################################################
+##################################### ACTOR OVERVIEWS ##########################################
+################################################################################################
+################################################################################################
+
 class ActorOverview(TemplateView):
-    template_name = 'front_end/actor_overview.html'
+    template_name = 'front_end/general_overviews/actor_overview/actor_home.html'
 
     def get_context_data(self, **kwargs):
         context = super(ActorOverview, self).get_context_data(**kwargs)
@@ -244,7 +263,7 @@ class ActorOverview(TemplateView):
         return context
 
 class ActorOverviewTopAtBO(TemplateView):
-    template_name = 'front_end/actor_overview_components/top_actors_by_bo.html'
+    template_name = 'front_end/general_overviews/actor_overview/top_100/top_actors_by_bo.html'
 
     def get_context_data(self, **kwargs):
         context = super(ActorOverviewTopAtBO, self).get_context_data(**kwargs)
@@ -255,7 +274,7 @@ class ActorOverviewTopAtBO(TemplateView):
         return context
 
 class ActorOverviewLengthAtBO(TemplateView):
-    template_name = 'front_end/actor_overview_components/top_actors_by_length.html'
+    template_name = 'front_end/general_overviews/actor_overview/top_100/top_actors_by_length.html'
 
     def get_context_data(self, **kwargs):
         context = super(ActorOverviewLengthAtBO, self).get_context_data(**kwargs)
@@ -266,11 +285,11 @@ class ActorOverviewLengthAtBO(TemplateView):
 
         return context
 
-class ActorOverviewNoFilms(TemplateView):
-    template_name = 'front_end/actor_overview_components/top_actors_by_films.html'
+class ActorOverviewNumFilms(TemplateView):
+    template_name = 'front_end/general_overviews/actor_overview/top_100/top_actors_by_films.html'
 
     def get_context_data(self, **kwargs):
-        context = super(ActorOverviewNoFilms, self).get_context_data(**kwargs)
+        context = super(ActorOverviewNumFilms, self).get_context_data(**kwargs)
         
         context.update({
             'actors_num_films': Actor.objects.all().order_by('-num_of_films')[0:100],
@@ -278,8 +297,320 @@ class ActorOverviewNoFilms(TemplateView):
 
         return context
 
+################################################################################################
+################################################################################################
+#################################### DIRECTOR OVERVIEWS ########################################
+################################################################################################
+################################################################################################
+
+class DirectorOverview(TemplateView):
+    template_name = 'front_end/general_overviews/director_overview/director_home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DirectorOverview, self).get_context_data(**kwargs)
+
+        directors_gross = Director.objects.all().order_by('-career_gross')[0:5]
+        directors_bo_length = Director.objects.all().order_by('-weeks_at_uk_cinemas')[0:5]
+        directors_num_films = Director.objects.all().order_by('-num_of_films')[0:5]
+
+        director_by_gross_list = []
+        director_by_gross_names = []
+        director_gross_value_set = directors_gross.values_list('name', 'career_gross')
+
+        for director in director_gross_value_set:
+            director_by_gross_list.insert(0,director[0])
+            director_by_gross_names.insert(0,director[1])
+
+        director_by_gross_bar = go.Figure(
+            data=[
+                go.Bar(
+                    name="Gross",
+                    x= director_by_gross_names,
+                    y= director_by_gross_list,
+                    orientation='h',
+                ),
+            ],
+            layout=go.Layout(
+                font=dict(family='Ramabhadra', size=13)
+            )
+        )
+
+        director_bo_bar_div = plot(director_by_gross_bar, auto_open=False, output_type='div')
+
+        director_by_bol_list = []
+        director_by_bol_names = []
+        directors_bol_value_set = directors_bo_length.values_list('name', 'weeks_at_uk_cinemas')
+
+        for director in directors_bol_value_set:
+            director_by_bol_list.insert(0,director[0])
+            director_by_bol_names.insert(0,director[1])
+
+        director_by_bol_bar = go.Figure(
+            data=[
+                go.Bar(
+                    name="Gross",
+                    x= director_by_bol_names,
+                    y= director_by_bol_list,
+                    orientation='h',
+                ),
+            ],
+            layout=go.Layout(
+                font=dict(family='Ramabhadra', size=13)
+            )
+        )
+
+        director_by_bol_bar_div = plot(director_by_bol_bar, auto_open=False, output_type='div')
+
+        director_film_num_list = []
+        director_film_num_names = []
+        directors_film_num_value_set = directors_num_films.values_list('name', 'num_of_films')
+
+        for director in directors_film_num_value_set:
+            director_film_num_list.insert(0,director[0])
+            director_film_num_names.insert(0,director[1])
+
+        director_by_film_num_bar = go.Figure(
+            data=[
+                go.Bar(
+                    name="Gross",
+                    x= director_film_num_names,
+                    y= director_film_num_list,
+                    orientation='h',
+                ),
+            ],
+            layout=go.Layout(
+                font=dict(family='Ramabhadra', size=13)
+            )
+        )
+
+        director_by_film_num_bar_div = plot(director_by_film_num_bar, auto_open=False, output_type='div')
+
+        context.update({
+            'directors_2002': Director.objects.all().order_by('-gross_2002')[0:10],
+            'directors_2003': Director.objects.all().order_by('-gross_2003')[0:10],
+            'directors_2004': Director.objects.all().order_by('-gross_2004')[0:10],
+            'directors_2005': Director.objects.all().order_by('-gross_2005')[0:10],
+            'directors_2006': Director.objects.all().order_by('-gross_2006')[0:10],
+            'directors_2007': Director.objects.all().order_by('-gross_2007')[0:10],
+            'directors_2008': Director.objects.all().order_by('-gross_2008')[0:10],
+            'directors_2009': Director.objects.all().order_by('-gross_2009')[0:10],
+            'directors_2010': Director.objects.all().order_by('-gross_2010')[0:10],
+            'directors_2011': Director.objects.all().order_by('-gross_2011')[0:10],
+            'directors_2012': Director.objects.all().order_by('-gross_2012')[0:10],
+            'directors_2013': Director.objects.all().order_by('-gross_2013')[0:10],
+            'directors_2014': Director.objects.all().order_by('-gross_2014')[0:10],
+            'directors_2015': Director.objects.all().order_by('-gross_2015')[0:10],
+            'directors_2016': Director.objects.all().order_by('-gross_2016')[0:10],
+            'directors_2017': Director.objects.all().order_by('-gross_2017')[0:10],
+            'directors_2018': Director.objects.all().order_by('-gross_2018')[0:10],
+            'directors_2019': Director.objects.all().order_by('-gross_2019')[0:10],
+            'directors_2020': Director.objects.all().order_by('-gross_2020')[0:10],
+            'directors_gross': directors_gross,
+            'directors_bo_length': directors_bo_length,
+            'directors_num_films': directors_num_films,
+            'director_bo_bar_div': director_bo_bar_div,
+            'director_by_bol_bar_div': director_by_bol_bar_div,
+            'director_by_film_num_bar_div': director_by_film_num_bar_div,
+
+        })
+        return context
+
+class DirectorOverviewTopAtBO(TemplateView):
+    template_name = 'front_end/general_overviews/director_overview/top_100/top_directors_by_bo.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DirectorOverviewTopAtBO, self).get_context_data(**kwargs)
+        
+        context.update({
+            'directors_gross': Director.objects.all().order_by('-career_gross')[0:100],
+        })
+        return context
+
+class DirectorOverviewLengthAtBO(TemplateView):
+    template_name = 'front_end/general_overviews/director_overview/top_100/top_directors_by_length.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DirectorOverviewLengthAtBO, self).get_context_data(**kwargs)
+        
+        context.update({
+            'directors_bo_length': Director.objects.all().order_by('-weeks_at_uk_cinemas')[0:100],
+            })
+
+        return context
+
+class DirectorOverviewNumFilms(TemplateView):
+    template_name = 'front_end/general_overviews/director_overview/top_100/top_directors_by_films.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DirectorOverviewNumFilms, self).get_context_data(**kwargs)
+        
+        context.update({
+            'directors_num_films': Director.objects.all().order_by('-num_of_films')[0:100],
+            })
+
+        return context
+
+################################################################################################
+################################################################################################
+#################################### WRITER OVERVIEWS ########################################
+################################################################################################
+################################################################################################
+
+class WriterOverview(TemplateView):
+    template_name = 'front_end/general_overviews/writer_overview/writer_home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(WriterOverview, self).get_context_data(**kwargs)
+
+        writers_gross = Writer.objects.all().order_by('-career_gross')[0:5]
+        writers_bo_length = Writer.objects.all().order_by('-weeks_at_uk_cinemas')[0:5]
+        writers_num_films = Writer.objects.all().order_by('-num_of_films')[0:5]
+
+        writer_by_gross_list = []
+        writer_by_gross_names = []
+        writers_gross_value_set = writers_gross.values_list('name', 'career_gross')
+
+        for writer in writers_gross_value_set:
+            writer_by_gross_list.insert(0,writer[0])
+            writer_by_gross_names.insert(0,writer[1])
+
+        writer_by_gross_bar = go.Figure(
+            data=[
+                go.Bar(
+                    name="Gross",
+                    x= writer_by_gross_names,
+                    y= writer_by_gross_list,
+                    orientation='h',
+                ),
+            ],
+            layout=go.Layout(
+                font=dict(family='Ramabhadra', size=13)
+            )
+        )
+
+        writer_bo_bar_div = plot(writer_by_gross_bar, auto_open=False, output_type='div')
+
+        writer_by_bol_list = []
+        writer_by_bol_names = []
+        writers_bol_value_set = writers_bo_length.values_list('name', 'weeks_at_uk_cinemas')
+
+        for writer in writers_bol_value_set:
+            writer_by_bol_list.insert(0,writer[0])
+            writer_by_bol_names.insert(0,writer[1])
+
+        writer_by_bol_bar = go.Figure(
+            data=[
+                go.Bar(
+                    name="Gross",
+                    x= writer_by_bol_names,
+                    y= writer_by_bol_list,
+                    orientation='h',
+                ),
+            ],
+            layout=go.Layout(
+                font=dict(family='Ramabhadra', size=13)
+            )
+        )
+
+        writer_by_bol_bar_div = plot(writer_by_bol_bar, auto_open=False, output_type='div')
+
+        writer_film_num_list = []
+        writer_film_num_names = []
+        writers_film_num_value_set = writers_num_films.values_list('name', 'num_of_films')
+
+        for writer in writers_film_num_value_set:
+            writer_film_num_list.insert(0,writer[0])
+            writer_film_num_names.insert(0,writer[1])
+
+        writer_by_film_num_bar = go.Figure(
+            data=[
+                go.Bar(
+                    name="Gross",
+                    x= writer_film_num_names,
+                    y= writer_film_num_list,
+                    orientation='h',
+                ),
+            ],
+            layout=go.Layout(
+                font=dict(family='Ramabhadra', size=13)
+            )
+        )
+
+        writer_by_film_num_bar_div = plot(writer_by_film_num_bar, auto_open=False, output_type='div')
+
+        context.update({
+            'writers_2002': Writer.objects.all().order_by('-gross_2002')[0:10],
+            'writers_2003': Writer.objects.all().order_by('-gross_2003')[0:10],
+            'writers_2004': Writer.objects.all().order_by('-gross_2004')[0:10],
+            'writers_2005': Writer.objects.all().order_by('-gross_2005')[0:10],
+            'writers_2006': Writer.objects.all().order_by('-gross_2006')[0:10],
+            'writers_2007': Writer.objects.all().order_by('-gross_2007')[0:10],
+            'writers_2008': Writer.objects.all().order_by('-gross_2008')[0:10],
+            'writers_2009': Writer.objects.all().order_by('-gross_2009')[0:10],
+            'writers_2010': Writer.objects.all().order_by('-gross_2010')[0:10],
+            'writers_2011': Writer.objects.all().order_by('-gross_2011')[0:10],
+            'writers_2012': Writer.objects.all().order_by('-gross_2012')[0:10],
+            'writers_2013': Writer.objects.all().order_by('-gross_2013')[0:10],
+            'writers_2014': Writer.objects.all().order_by('-gross_2014')[0:10],
+            'writers_2015': Writer.objects.all().order_by('-gross_2015')[0:10],
+            'writers_2016': Writer.objects.all().order_by('-gross_2016')[0:10],
+            'writers_2017': Writer.objects.all().order_by('-gross_2017')[0:10],
+            'writers_2018': Writer.objects.all().order_by('-gross_2018')[0:10],
+            'writers_2019': Writer.objects.all().order_by('-gross_2019')[0:10],
+            'writers_2020': Writer.objects.all().order_by('-gross_2020')[0:10],
+            'writers_gross': writers_gross,
+            'writers_bo_length': writers_bo_length,
+            'writers_num_films': writers_num_films,
+            'writer_bo_bar_div': writer_bo_bar_div,
+            'writer_by_bol_bar_div': writer_by_bol_bar_div,
+            'writer_by_film_num_bar_div': writer_by_film_num_bar_div,
+        })
+        return context
+
+class WriterOverviewTopAtBO(TemplateView):
+    template_name = 'front_end/general_overviews/writer_overview/top_100/top_writers_by_bo.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(WriterOverviewTopAtBO, self).get_context_data(**kwargs)
+        
+        context.update({
+            'writers_gross': Writer.objects.all().order_by('-career_gross')[0:100],
+        })
+        return context
+
+class WriterOverviewLengthAtBO(TemplateView):
+    template_name = 'front_end/general_overviews/writer_overview/top_100/top_writers_by_length.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(WriterOverviewLengthAtBO, self).get_context_data(**kwargs)
+        
+        context.update({
+            'writers_bo_length': Writer.objects.all().order_by('-weeks_at_uk_cinemas')[0:100],
+            })
+
+        return context
+
+class WriterOverviewNumFilms(TemplateView):
+    template_name = 'front_end/general_overviews/writer_overview/top_100/top_writers_by_films.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(WriterOverviewNumFilms, self).get_context_data(**kwargs)
+        
+        context.update({
+            'writer_num_films': Writer.objects.all().order_by('-num_of_films')[0:100],
+            })
+
+        return context
+
+################################################################################################
+################################################################################################
+###################################### TALENT PAGES ############################################
+################################################################################################
+################################################################################################
+
+
 class ActorPage(TemplateView):
-    template_name = 'front_end/actor_page.html'
+    template_name = 'front_end/entries/actor_page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -316,15 +647,13 @@ class ActorPage(TemplateView):
                 data=[
                     go.Bar(
                         name="Gross",
-                        x=release_date_value_list,
+                        x=title_value_list,
                         y=gross_value_list,
-                        hovertext = title_value_list,
                     ),
                     go.Bar(
                         name="Opening",
-                        x=release_date_value_list,
+                        x=title_value_list,
                         y=opening_value_list,
-                        hovertext = title_value_list,
                     ),
                 ],
                 layout=go.Layout(
@@ -358,7 +687,7 @@ class ActorPage(TemplateView):
 
 
 class DirectorPage(TemplateView):
-    template_name = 'front_end/director_page.html'
+    template_name = 'front_end/entries/director_page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -390,6 +719,29 @@ class DirectorPage(TemplateView):
         figure=go.Figure(data=data,layout=layout)
         scatter_div = plot(figure, auto_open=False, output_type='div')
 
+        ### Bar Chart
+        trace2 = go.Figure(
+                data=[
+                    go.Bar(
+                        name="Gross",
+                        x=title_value_list,
+                        y=gross_value_list,
+                    ),
+                    go.Bar(
+                        name="Opening",
+                        x=title_value_list,
+                        y=opening_value_list,
+                    ),
+                ],
+                layout=go.Layout(
+                    title="Films by Gross",
+                    yaxis_title="Gross/Opening Weekend",
+                    barmode='overlay'
+                )
+            )
+
+        bar_div = plot(trace2, auto_open=False, output_type='div')
+
         context.update({
             'director_detail': director,
             #'total_gross': director_data.average_box_office_return,
@@ -398,12 +750,12 @@ class DirectorPage(TemplateView):
             #'weeks_in_cinema': director_data.weeks_at_uk_cinemas,
             #'career_screen_average': director_data.career_screen_average,
             'scatter_div': scatter_div,
-            #'bar_div':bar_div,
+            'bar_div':bar_div,
         })
         return context
 
 class WriterPage(TemplateView):
-    template_name = 'front_end/writer_page.html'
+    template_name = 'front_end/entries/writer_page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -435,6 +787,29 @@ class WriterPage(TemplateView):
         figure=go.Figure(data=data,layout=layout)
         scatter_div = plot(figure, auto_open=False, output_type='div')
 
+        ### Bar Chart
+        trace2 = go.Figure(
+                data=[
+                    go.Bar(
+                        name="Gross",
+                        x=title_value_list,
+                        y=gross_value_list,
+                    ),
+                    go.Bar(
+                        name="Opening",
+                        x=title_value_list,
+                        y=opening_value_list,
+                    ),
+                ],
+                layout=go.Layout(
+                    title="Films by Gross",
+                    yaxis_title="Gross/Opening Weekend",
+                    barmode='overlay'
+                )
+            )
+
+        bar_div = plot(trace2, auto_open=False, output_type='div')
+
         context.update({
             'writer_detail': writer,
             #'total_gross': writer_data.average_box_office_return,
@@ -443,12 +818,18 @@ class WriterPage(TemplateView):
             #'weeks_in_cinema': writer_data.weeks_at_uk_cinemas,
             #'career_screen_average': writer_data.career_screen_average,
             'scatter_div': scatter_div,
-            #'bar_div':bar_div,
+            'bar_div':bar_div,
         })
         return context
 
+################################################################################################
+################################################################################################
+#################################### NAVIGATION PAGES ##########################################
+################################################################################################
+################################################################################################
+
 class SearchResults(ListView):
-    template_name = 'front_end/search_page.html'
+    template_name = 'front_end/navigation_pages/search_page.html'
     context_object_name = 'query'
     paginate_by = 10
     

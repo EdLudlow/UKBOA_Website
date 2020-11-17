@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+{% extends 'front_end/base_templates/base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'front_end/writer_overview.css' %}">
+{% endblock %}
+
+{% block body-block %}
+
+{% include 'front_end/base_components/navbar.html' %}
+
+  <div class="container-fluid text-center mt-5">    
+    <div class="container"> 
+      <h2>TOP WRITERS AT THE BRITISH BOX OFFICE</h2>
+   
+      <div class="row mt-5">
+
+        <div class = "col-sm-6 ">
+          <table class="table">
+            <thead>
+              <h5>TOP 5 WRITERS BY CUMULATIVE FILM GROSS AT UK BOX OFFICE</h5>
+            </thead>
+            <tbody>
+              {% for writer in writers_gross %}
+              <tr class = "table-row ">
+                <td class= "align-middle">
+                  {{ forloop.counter }}
+                </td>
+                <td class= "align-middle">
+                  <div class="well">
+                    <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                </div>
+                </td>
+                <td class= "align-middle">
+                  <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                </td>
+                <td class= "align-middle">
+                  £{{ writer.career_gross|intcomma }}
+                </td>
+              </tr>
+              {% endfor %}
+              
+            </tbody>
+          </table>
+          <div class="container">
+            <h5>
+              SEE TOP THE 100 <a href="/top_writers_by_bo">HERE</a>
+            </h5>
+          </div>
+
+        </div>
+        <div class = "col-sm-6">
+          <div class='container text-left'>
+
+            {% autoescape off %}
+            {{ writer_bo_bar_div }}
+            {% endautoescape %}
+
+            </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class = "col-sm-6">
+
+          {% autoescape off %}
+          {{ writer_by_bol_bar_div }}
+          {% endautoescape %}
+
+        </div>
+        <div class = "col-sm-6">            
+          <table class="table">
+            <thead>
+              <h5>TOP 5 WRITERS BY NUMBER OF WEEKS THEIR FILMS APPEARED AT THE BRITISH BOX OFFICE</h5>
+            </thead>
+            <tbody>
+              {% for writer in writers_bo_length %}
+              <tr class = "table-row ">
+                <td class= "align-middle">
+                  {{ forloop.counter }}
+                </td>
+                <td class= "align-middle">
+                  <div class="well">
+                    <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                </div>
+                </td>
+                <td class= "align-middle">
+                  <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                </td>
+                <td class= "align-middle">
+                  {{ writer.weeks_at_uk_cinemas }}
+                </td>
+              </tr>
+              {% endfor %}
+              
+            </tbody>
+          </table>
+          <div class="container">
+            <h5>
+              SEE TOP THE 100 <a href="/top_writers_by_length">HERE</a>
+            </h5>
+          </div>
+        </div>
+        <div class = "col-sm-6">
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class = "col-sm-6">
+
+          <table class="table">
+            <thead>
+              <h5>TOP 5 WRITERS BY NUMBER OF FILMS WHICH APPEARED AT THE BRITISH BOX OFFICE</h5>
+            </thead>
+            <tbody>
+              {% for writer in writers_num_films %}
+              <tr class = "table-row ">
+                <td class= "align-middle">
+                  {{ forloop.counter }}
+                </td>
+                <td class= "align-middle">
+                  <div class="well">
+                    <img src="{{ writer.headshot }}" class="mx-auto d-block mb-0" id="film_poster" style="width: 37px">
+                </div>
+                </td>
+                <td class= "align-middle">
+                  <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>
+                </td>
+                <td class= "align-middle">
+                  {{ writer.num_of_films }}
+                </td>
+              </tr>
+              {% endfor %}
+              
+            </tbody>
+          </table>
+          <div class="container">
+            <h5>
+              SEE TOP THE 100 <a href="/top_writers_by_films">HERE</a>
+            </h5>
+          </div>
+        </div>
+        <div class = "col-sm-6">
+
+          {% autoescape off %}
+          {{ writer_by_film_num_bar_div }}
+          {% endautoescape %}
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid text-center mt-5">    
+    <div class="container">  
+      {% include 'front_end/general_overviews/writer_overview/overview_components/yearly_writer_report.html' %}
+    </div>
+  </div>  
+{% endblock %}

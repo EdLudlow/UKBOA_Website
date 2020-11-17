@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'front_end/base_templates/base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+
+{% block body-block %}
+
+ {% include 'front_end/base_components/navbar.html' %}
+
+  <div id="main_body" class='container'>
+    <div class='body-text'>
+      <div class = 'container site_overview'>
+        <h1>About:</h1>
+        <h4>
+          Have you wondered if Brad Pitt is as popular as he was 10 years ago? Or if Joker made as much 
+          Money as Frozen 2? Or who has appeared in the most films in the UK since 2015? UKBOA might be
+          able to help... 
+        </h4>  
+        <h5>
+          <br>
+          UK Box Office Analytics (UKBOA) is an interactive data visualization tool which tracks
+          the performance of films, actors, directors and screenwriters at the UK box office since 2001.
+          Using the BFI's weekly box office reports, UKBOA gauges how films, and the people involed in 
+          making them have seen their financial returns fluctuate over time, providing an insight into
+          the changing tastes of the British cinema-going public.
+          <br>
+          <br>
+          While it should be noted that UKBOA does not use an exhaustive data-set (the source only includes
+          the weekly box office for the top 15 films, British films, and new releases), the tool provides a 
+          helpful insight into the general trends of UK box office performance.
+      </div>
+      <div class = 'container creator_overview'>
+        <h1><br>Ed Ludlow:</h1>
+        <h5>
+          UKBOA was conceived, created and designed by Ed Ludlow, a film publicist who lives and works in London. 
+          <br>
+          <div class='container quote'>
+          <br>
+          "Using lockdown as an opportunity to upskill, UKBOA started life as a means of teaching myself how to code.  
+          Based on Andy Rae's Box Office dashboard, I...
+          </div>
+        </h5>
+
+      </div>
+        
+    </div>
+
+  </div>
+
+{% endblock %}
