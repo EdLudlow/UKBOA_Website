@@ -1,0 +1,35 @@
+
+
+/* Paralax */
+
+body{
+  color: white;
+}
+
+
+body{
+  background-color: black;
+}
+
+
+#plx{
+  background: url('../images/backstage_image_UKBOA.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+}
+
+#plx2{
+  background: url('../images/box_office_neon.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+}
+
+.heading_text{
+  color: red;
+}

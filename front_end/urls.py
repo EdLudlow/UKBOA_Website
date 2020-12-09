@@ -7,7 +7,8 @@ urlpatterns = [
 
     #Home page and About
     path('', views.HomePage.as_view(), name='home'),
-    path('about', views.AboutPage.as_view(), name='about'),
+    path('the_site', views.AboutTheSite.as_view(), name='about'),
+    path('about_me', views.AboutMe.as_view(), name='creator'),
 
     #Entries
     path('film_page/<pk>/', views.FilmPage.as_view()),

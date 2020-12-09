@@ -1124,15 +1124,25 @@ def populate_2020():
                 new_film_instance.save()
 
                 
+def add_empty_photos():
+ 
+    empty_film_photos = Writer.objects.filter(headshot = None)
+
+    for entry in empty_film_photos:
+        entry.headshot = 'https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/name-2135195744._CB466677935_.png'
+        entry.save()
+
+def calculate_no_of_actors():
+    print(len(Film.objects.all()))
+    print(len(Director.objects.all()))
+    print(len(Actor.objects.all()))
+    print(len(Writer.objects.all()))
+
+
+
 if __name__ == "__main__":
     print("populating")
-    '''
-    film_object = Film.objects.get(title='23 WALKS')
-    film_object.delete()
-    film_object = Film.objects.get(title='100% WOLF') 
-    film_object.delete()
-    '''
-    populate_2020()
+    calculate_no_of_actors()   
     print("populated") 
 
 

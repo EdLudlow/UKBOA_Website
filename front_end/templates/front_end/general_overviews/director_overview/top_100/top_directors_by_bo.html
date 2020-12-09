@@ -5,6 +5,10 @@
 {% load humanize %}
 
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'front_end/director_overview.css' %}">
+{% endblock %}
+
 {% block body-block %}
 
 {% include 'front_end/base_components/navbar.html' %}

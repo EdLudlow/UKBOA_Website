@@ -18,8 +18,11 @@ import collections
 class HomePage(TemplateView):
     template_name = 'front_end/home_page.html'
 
-class AboutPage(TemplateView):
-    template_name = 'front_end/about.html'
+class AboutTheSite(TemplateView):
+    template_name = 'front_end/about_the_site.html'
+
+class AboutMe(TemplateView):
+    template_name = 'front_end/about_me.html'
 
 ################################################################################################
 ################################################################################################
@@ -35,12 +38,22 @@ class FilmPage(TemplateView):
         film_instance = Film.objects.get(imdb_id=kwargs['pk'])
 
         #Opening Weekend Pie Chart
-        if film_instance.opening:
+        if film_instance.opening == film_instance.gross:
+            pie_div = None
+            
+        elif film_instance.opening:
             labels = ['Opening Weekend','Rest of Run']
             values = [film_instance.opening, (film_instance.gross-film_instance.opening)]
             trace3 = go.Figure(data=[go.Pie(labels=labels, values=values)])
+            trace3.update_layout(
+                paper_bgcolor='black', 
+                plot_bgcolor='black',
+                title="Percentage of Box Office Gross account for by Opening Weekend",
+                font=dict(family='Ramabhadra', size=13, color='white')
+                )
+
             pie_div = plot(trace3, auto_open=False, output_type='div')
-        
+
         else:
             pie_div = None
 
@@ -100,7 +113,14 @@ class GeneralFilmsPage(TemplateView):
         trace1 = go.Scatter(x=x_value_list, y=y_value_list, marker={'color': 'red'}, hovertext = z_value_list,
                             mode="markers+text", name='1st Trace')
         data=go.Data([trace1])
-        layout=go.Layout(title="Top Performing 1000 Films in the UK 2001-2020 by Total Box Office Gross", xaxis= {'title':'Year'}, yaxis={'title':'Gross'})
+        layout=go.Layout(
+            yaxis={'title':'Film Gross Earnings'},
+            xaxis={'showgrid':False},
+            paper_bgcolor='black',
+            plot_bgcolor='black',
+            title="Top 1000 films at the UK Box Office 2001-2020", 
+            font=dict(family='Ramabhadra', size=13, color='white'))
+            
         figure=go.Figure(data=data,layout=layout)
         div = plot(figure, auto_open=False, output_type='div')
 
@@ -129,7 +149,11 @@ class GeneralFilmsPage(TemplateView):
                 ],
                 layout=go.Layout(
                     title="Cumilative Yearly Takings at UK Box Office 2001-2020 (all films)",
-                    yaxis_title="Yearly Gross",
+                    yaxis_title="Yearly Cumulative Gross",
+                    paper_bgcolor='black', 
+                    plot_bgcolor='black',
+                    font=dict(family='Ramabhadra', size=13, color='white'),
+                    xaxis={'showgrid':False}, 
                 )
             )
 
@@ -178,7 +202,11 @@ class ActorOverview(TemplateView):
                 ),
             ],
             layout=go.Layout(
-                font=dict(family='Ramabhadra', size=13)
+                font=dict(family='Ramabhadra', size=13, color='white'),
+                paper_bgcolor='black',
+                plot_bgcolor='black',
+                title="Top 5 Actors by Gross",
+                yaxis={'showgrid':False}, 
             )
         )
 
@@ -202,7 +230,11 @@ class ActorOverview(TemplateView):
                 ),
             ],
             layout=go.Layout(
-                font=dict(family='Ramabhadra', size=13)
+                font=dict(family='Ramabhadra', size=13, color='white'),
+                paper_bgcolor='black',
+                plot_bgcolor='black',
+                title="Top 5 Actors by Length of Time at Box Office",
+                yaxis={'showgrid':False}, 
             )
         )
 
@@ -226,7 +258,12 @@ class ActorOverview(TemplateView):
                 ),
             ],
             layout=go.Layout(
-                font=dict(family='Ramabhadra', size=13)
+                font=dict(family='Ramabhadra', size=13, color='white'),
+                paper_bgcolor='black',
+                plot_bgcolor='black',
+                title="The 5 Actors by No. of Films",
+                yaxis={'showgrid':False},
+
             )
         )
 
@@ -331,7 +368,11 @@ class DirectorOverview(TemplateView):
                 ),
             ],
             layout=go.Layout(
-                font=dict(family='Ramabhadra', size=13)
+                font=dict(family='Ramabhadra', size=13, color='white'),
+                paper_bgcolor='black',
+                plot_bgcolor='black',
+                title="Top 5 Directors by Gross",
+                yaxis={'showgrid':False}, 
             )
         )
 
@@ -355,7 +396,11 @@ class DirectorOverview(TemplateView):
                 ),
             ],
             layout=go.Layout(
-                font=dict(family='Ramabhadra', size=13)
+                font=dict(family='Ramabhadra', size=13, color='white'),
+                paper_bgcolor='black',
+                plot_bgcolor='black',
+                title="Top 5 Directors by Length of Time at Box Office",
+                yaxis={'showgrid':False}, 
             )
         )
 
@@ -379,7 +424,11 @@ class DirectorOverview(TemplateView):
                 ),
             ],
             layout=go.Layout(
-                font=dict(family='Ramabhadra', size=13)
+                font=dict(family='Ramabhadra', size=13, color='white'),
+                paper_bgcolor='black',
+                plot_bgcolor='black',
+                title="The 5 Directors by No. of Films", 
+                yaxis={'showgrid':False},
             )
         )
 
@@ -484,7 +533,11 @@ class WriterOverview(TemplateView):
                 ),
             ],
             layout=go.Layout(
-                font=dict(family='Ramabhadra', size=13)
+                font=dict(family='Ramabhadra', size=13, color='white'),
+                paper_bgcolor='black',
+                plot_bgcolor='black',
+                title="Top 5 Writers by Gross",
+                yaxis={'showgrid':False}, 
             )
         )
 
@@ -508,7 +561,11 @@ class WriterOverview(TemplateView):
                 ),
             ],
             layout=go.Layout(
-                font=dict(family='Ramabhadra', size=13)
+                font=dict(family='Ramabhadra', size=13, color='white'),
+                paper_bgcolor='black',
+                plot_bgcolor='black',
+                title="Top 5 Writers by Length of Time at Box Office",
+                yaxis={'showgrid':False}, 
             )
         )
 
@@ -532,7 +589,11 @@ class WriterOverview(TemplateView):
                 ),
             ],
             layout=go.Layout(
-                font=dict(family='Ramabhadra', size=13)
+                font=dict(family='Ramabhadra', size=13, color='white'),
+                paper_bgcolor='black',
+                plot_bgcolor='black',
+                title="The 5 Writers by No. of Films", 
+                yaxis={'showgrid':False},
             )
         )
 
@@ -638,7 +699,15 @@ class ActorPage(TemplateView):
         trace1 = go.Scatter(x=release_date_value_list, y=gross_value_list, marker={'color': 'red'}, hovertext = title_value_list,
                     mode="markers+text", name='1st Trace')
         data=go.Data([trace1])
-        layout=go.Layout(title="Films by Gross", xaxis= {'title':'Year'}, yaxis={'title':'Gross'})
+        layout = go.Layout(
+            title="Actor's Films by Total Gross earned at the British Box Office",
+            xaxis={'showgrid':False},
+            yaxis={'title':'Gross','showgrid':False},
+            paper_bgcolor='black', 
+            plot_bgcolor='black',
+            font=dict(family='Ramabhadra', size=13, color='white'),
+            )
+            
         figure=go.Figure(data=data,layout=layout)
         scatter_div = plot(figure, auto_open=False, output_type='div')
         
@@ -657,20 +726,17 @@ class ActorPage(TemplateView):
                     ),
                 ],
                 layout=go.Layout(
-                    title="Films by Gross",
+                    title="Actor's films broken down by Opening Weekend as a propotion of Total Box Office Gross",
                     yaxis_title="Gross/Opening Weekend",
-                    barmode='overlay'
+                    barmode='overlay',
+                    font=dict(family='Ramabhadra', size=13, color='white'),
+                    xaxis={'showgrid':False},
+                    paper_bgcolor='black',
+                    plot_bgcolor='black', 
                 )
             )
 
         bar_div = plot(trace2, auto_open=False, output_type='div')
-
-        labels = ['Oxygen','Hydrogen','Carbon_Dioxide','Nitrogen']
-        values = [4500, 2500, 1053, 500]
-
-        trace3 = go.Figure(data=[go.Pie(labels=labels, values=values)])
-
-        pie_div = plot(trace3, auto_open=False, output_type='div')
 
         context.update({
             'actor_detail': actor,
@@ -681,7 +747,6 @@ class ActorPage(TemplateView):
             #'career_screen_average': actor_data.career_screen_average,
             'scatter_div': scatter_div,
             'bar_div': bar_div,
-            'pie_div': pie_div,
         })
         return context
 
@@ -715,7 +780,14 @@ class DirectorPage(TemplateView):
         trace1 = go.Scatter(x=release_date_value_list, y=gross_value_list, marker={'color': 'red'}, hovertext = title_value_list,
                     mode="markers+text", name='1st Trace')
         data=go.Data([trace1])
-        layout=go.Layout(title="Films by Gross", xaxis= {'title':'Year'}, yaxis={'title':'Gross'})
+        layout=go.Layout(
+            title="Director's Films by Total Gross earned at the British Box Office",
+            xaxis={'showgrid':False},
+            yaxis={'title':'Gross','showgrid':False},
+            paper_bgcolor='black', 
+            plot_bgcolor='black',
+            font=dict(family='Ramabhadra', size=13, color='white'),
+            )
         figure=go.Figure(data=data,layout=layout)
         scatter_div = plot(figure, auto_open=False, output_type='div')
 
@@ -734,9 +806,13 @@ class DirectorPage(TemplateView):
                     ),
                 ],
                 layout=go.Layout(
-                    title="Films by Gross",
+                    title="Director's films broken down by Opening Weekend as a propotion of Total Box Office Gross",
                     yaxis_title="Gross/Opening Weekend",
-                    barmode='overlay'
+                    xaxis={'showgrid':False},
+                    barmode='overlay',
+                    font=dict(family='Ramabhadra', size=13, color='white'),
+                    paper_bgcolor='black',
+                    plot_bgcolor='black', 
                 )
             )
 
@@ -783,7 +859,13 @@ class WriterPage(TemplateView):
         trace1 = go.Scatter(x=release_date_value_list, y=gross_value_list, marker={'color': 'red'}, hovertext = title_value_list,
                     mode="markers+text", name='1st Trace')
         data=go.Data([trace1])
-        layout=go.Layout(title="Films by Gross", xaxis= {'title':'Year'}, yaxis={'title':'Gross'})
+        layout=go.Layout(
+            xaxis={'showgrid':False},
+            yaxis={'title':'Gross','showgrid':False},
+            paper_bgcolor='black', 
+            plot_bgcolor='black',
+            font=dict(family='Ramabhadra', size=13, color='white'),
+            )
         figure=go.Figure(data=data,layout=layout)
         scatter_div = plot(figure, auto_open=False, output_type='div')
 
@@ -802,9 +884,12 @@ class WriterPage(TemplateView):
                     ),
                 ],
                 layout=go.Layout(
-                    title="Films by Gross",
+                    title="Writer's films broken down by Opening Weekend as a propotion of Total Box Office Gross",
                     yaxis_title="Gross/Opening Weekend",
-                    barmode='overlay'
+                    barmode='overlay',
+                    font=dict(family='Ramabhadra', size=13, color='white'),
+                    paper_bgcolor='black',
+                    plot_bgcolor='black', 
                 )
             )
 

@@ -40,25 +40,25 @@
                 Director: 
                 {% for director in queries.director.all %} 
                   {% if forloop.last %} 
-                    <a href="/director_page/{{ director.imdb_id }}">{{ director.name }}</a> 
+                    <a class="involvement" href="/director_page/{{ director.imdb_id }}">{{ director.name }}</a> 
                   {% else %}
-                    <a href="/director_page/{{ director.imdb_id }}">{{ director.name }}</a>,
+                    <a class="involvement" href="/director_page/{{ director.imdb_id }}">{{ director.name }}</a>,
                   {% endif %}
                 {% endfor %} <br>
                 Writer: 
                 {% for writer in queries.writers.all %} 
                   {% if forloop.last %} 
-                    <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a> 
+                    <a class="involvement" href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a> 
                   {% else %}
-                    <a href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>,
+                    <a class="involvement" href="/writer_page/{{ writer.imdb_id }}">{{ writer.name }}</a>,
                   {% endif %}
                 {% endfor %} <br>
               Starring:
               {% for actor in queries.actors.all|slice:":5" %} 
                 {% if forloop.last %} 
-                  <a href="/actor_page/{{ actor.imdb_id }}">{{ actor.name }}</a> 
+                  <a class="involvement" href="/actor_page/{{ actor.imdb_id }}">{{ actor.name }}</a> 
                 {% else %}
-                  <a href="/actor_page/{{ actor.imdb_id }}">{{ actor.name }}</a>,
+                  <a class="involvement" href="/actor_page/{{ actor.imdb_id }}">{{ actor.name }}</a>,
                 {% endif %}
               {% endfor %}
               </p>
@@ -86,9 +86,9 @@
               <p class="card-text">Films include:
                 {% for films in queries.film_actors.all|slice:":5" %} 
                   {% if forloop.last %}
-                    <a href="/film_page/{{ films.imdb_id }}">{{ films.title|title }}</a> 
+                    <a class="involvement-list" href="/film_page/{{ films.imdb_id }}">{{ films.title|title }}</a> 
                   {% else %}
-                    <a href="/film_page/{{ films.imdb_id }}">{{ films.title|title }},</a> 
+                    <a class="involvement-list" href="/film_page/{{ films.imdb_id }}">{{ films.title|title }},</a> 
                   {% endif %}
                 {% endfor %}</p>
             </div>
@@ -112,9 +112,9 @@
               <p class="card-text">Films include:
                 {% for films in queries.film_directors.all|slice:":5" %} 
                   {% if forloop.last %}
-                    <a href="/film_page/{{ films.imdb_id }}">{{ films.title|title }}</a> 
+                    <a class="involvement" href="/film_page/{{ films.imdb_id }}">{{ films.title|title }}</a> 
                   {% else %}
-                    <a href="/film_page/{{ films.imdb_id }}">{{ films.title|title }},</a> 
+                    <a class="involvement" href="/film_page/{{ films.imdb_id }}">{{ films.title|title }},</a> 
                   {% endif %}
                 {% endfor %}</p>
             </div>
@@ -138,9 +138,9 @@
               <p class="card-text">Films include:
                 {% for films in queries.film_writers.all|slice:":5" %} 
                   {% if forloop.last %}
-                    <a href="/film_page/{{ films.imdb_id }}">{{ films.title|title }}</a> 
+                    <a class="involvement" href="/film_page/{{ films.imdb_id }}">{{ films.title|title }}</a> 
                   {% else %}
-                    <a href="/film_page/{{ films.imdb_id }}">{{ films.title|title }},</a> 
+                    <a class="involvement" href="/film_page/{{ films.imdb_id }}">{{ films.title|title }},</a> 
                   {% endif %}
                 {% endfor %}</p>
             </div>

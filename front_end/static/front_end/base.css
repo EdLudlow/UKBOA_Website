@@ -1,8 +1,27 @@
-/* navbar */
-
-.body{
+body{
   font-family: 'Ramabhadra', sans-serif;
+  color: white;
+  background-color: black;
 }
+
+/*  hyperlinks */
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: white;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+/* navbar */
 
 .navbar{
   background-color: red;
@@ -22,16 +41,22 @@ h1{
   border-radius:0;
 }
 
-
 #navbar_search_container{
   background: none;
   border: none;
 }
-
 #navbar_searchbar{
   background: none;
   border-radius: 0;
   border-bottom-width:3px !important;
+}
+
+#burger_button{
+  background: black;
+}
+
+#navbar-dropdown{
+  color: black;
 }
 
 .form-control::-moz-placeholder{
@@ -85,7 +110,7 @@ h1{
 }
 
 .sidebar {
-  background-color: #ececec;
+  background-color: black;
   width: 3000px;
   height: 230px;
   /*overflow-x: scroll;
@@ -94,7 +119,6 @@ h1{
 }
 
 .full-wallet{
-  background-color: thistle;
   padding:0px;
   margin: 0px;
   border: 0px;

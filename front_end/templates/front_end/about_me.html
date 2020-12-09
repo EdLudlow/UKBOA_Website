@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'front_end/base_templates/base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'front_end/about_page.css' %}">
+{% endblock %}
+
+{% block body-block %}
+
+ {% include 'front_end/base_components/navbar.html' %}
+
+  <section id="information w-100">
+    <div class="container col-sm-8">
+      <div class="container d-flex h-100 col-10 text-justify mt-5 mb-5">
+        <div class = "textbox">
+            <h3 class="heading_text">Ed Ludlow, Founder:</h3>
+            <br>
+            <h3>
+            Film publicist. Data Analyst. Full-Stack Developer.
+            (I even write the copy) 
+            <br><br>            
+            UKBOA taught me how to code.
+            <br> 
+            I play chess, challenge me on 
+            </h3>
+            <br>
+
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

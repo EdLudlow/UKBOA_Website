@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% extends 'front_end/base_templates/base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'front_end/about_page.css' %}">
+{% endblock %}
+
+{% block body-block %}
+
+ {% include 'front_end/base_components/navbar.html' %}
+
+  <section id="information w-100">
+    <div class="container d-flex h-100 col-10 text-justify mt-5 mb-5">
+      <div class = "textbox">
+          <h3 class="heading_text">ABOUT:</h3>
+          <br>
+          <h3>
+          UK Box Office Analytics (UKBOA) is an interactive data visualisation tool which tracks
+          the performance of films, actors, directors and screenwriters at the UK box office since 2001.
+          Using the <a href="https://www.bfi.org.uk/education-research/film-industry-statistics-research/weekend-box-office-figures">
+          BFI's weekly box office reports</a> , UKBOA gauges how films, and the people involved in 
+          making them have seen their financial returns fluctuate over time, providing an insight into the
+          changing tastes of British cinema-goers.
+          </h3>
+          <br>
+          <h5>
+          Using a database of over 8000 films, 60,000 actors, 5000 directors and 13,000 screenwriters, UKBOA
+          offers several different metrics to analyse and compare films and film-making talent. 
+            <br>
+        </div>
+      </div>
+    </section>
+    <section id="plx">
+    </section>
+      <section id="information w-100">
+        <div class="container d-flex h-100 col-10 text-justify mt-5 mb-5">
+          <div class = "textbox">
+            <h5>
+            UKBOA presents a general overview of British cinematic revenue since the new millennium, breaking down
+            the best performing titles in any given year in that time period as well as providing statistics 
+            for each individual release. This includes the film's opening weekend revenue, the number of weeks it 
+            appeared at the British box office (length of run), the highest rank it achieved at the box office in
+            comparison to all other titles in cinemas that week, the average revenue for each cinema it appeared at
+            (site average) and the film's rating on Rotten Tomatoes. If you've found yourself pondering how much money 
+            Wonder Woman made for example, you can have a look its figures <a href="/film_page/tt0451279/">here</a> 
+            to find it earned a respectable £22,183,744 and was, at it's peak, the most popular ticket in the country.
+            <br>
+            <br>
+            However, UKBOA also breaks down films into their component parts, providing metrics to measure the 
+            popularity and bankability of the actors, directors and screen writers involved in making them. By
+            aggregating the data from every film that these individuals have worked on, UKBOA illustrates which 
+            names have accounted for the most in box office receipts, whose films have achieved the highest average
+            return, which faces have graced British cinema screens for the longest period of time and who are the  
+            hard-workers that have contributed to the making the highest number of films. 
+            </h5>
+          </div>    
+        </div>
+    </div>
+    <section id="plx2">
+    </section>
+      <section id="information w-100">
+        <div class="container d-flex h-100 col-10 text-justify mt-5 mb-5">
+          <div class = "textbox">
+            <h3 class="heading_text">HOW WAS THIS MADE?</h3>
+            <div class = "textbox">
+            <h5>
+            UKBOA draws its inspiration from <a href="https://boxoffice.rae.li/">Andy Rae's Box Office Dashboard</a> 
+            which uses the BFI's weekly box office reports to track the general performance of British cinematic revenue
+            since 2001 as well as the gross earnings of individual titles and distributors in that period. UKBOA uses a
+            similar data pipline, extracting the relevant imformation from the BFI weekly reports, transforming and
+            cleaning it before loading it into a large back-end database.
+            However, where UKBOA differs is through its integration of information and images from IMDb to provide its own 
+            distinct metrics and graphical interface, as well as insights into the talent involved in making the films
+            included.
+            <br>
+            <br>
+            </h5>
+          </div>    
+        </div>
+    </div>
+
+{% endblock %}

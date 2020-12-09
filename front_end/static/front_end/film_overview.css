@@ -6,3 +6,11 @@
 .tabbable .nav-tabs .nav-link {
  white-space: nowrap;
 }
+
+body{
+  color: white;
+}
+
+td{
+  color:white;
+}
