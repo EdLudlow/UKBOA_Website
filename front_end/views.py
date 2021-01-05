@@ -48,7 +48,7 @@ class FilmPage(TemplateView):
             trace3.update_layout(
                 paper_bgcolor='black', 
                 plot_bgcolor='black',
-                title="Percentage of Box Office Gross account for by Opening Weekend",
+                title="Percentage of Box Office Gross account by Opening Weekend",
                 font=dict(family='Ramabhadra', size=13, color='white')
                 )
 
@@ -148,7 +148,7 @@ class GeneralFilmsPage(TemplateView):
                     ),
                 ],
                 layout=go.Layout(
-                    title="Cumilative Yearly Takings at UK Box Office 2001-2020 (all films)",
+                    title="Cumulative Yearly Takings at UK Box Office 2001-2020 (all films)",
                     yaxis_title="Yearly Cumulative Gross",
                     paper_bgcolor='black', 
                     plot_bgcolor='black',
