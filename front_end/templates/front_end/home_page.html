@@ -1,14 +1,14 @@
 <!doctype html>
   {% load static %}
-  
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    
+
     <title>{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="ED" content="SitePoint">
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'front_end/homepage.css' %}">
     <style>
@@ -28,39 +28,45 @@
 
   <section class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-      <div class="col-12">   
-        <div class="container text-center align-middle">
-          <img src ="{% static 'images/UKBOA_NEW_LOGO_WoB_Underlined.png' %}" alt="UKBOA" width=400px>
-            <div class = "container col-md-8">
-              <div class="form-row align-items-center">
-                <form method="GET" action="/results/" class="my-auto w-100 d-inline-block order-1">
-                  <div class="input-group">
-                    <input type="text" name="q" class="form-control border-top-0 border-left-0 border-right-0"
-                    placeholder="Search films, actors, directors or writers..." id="navbar_searchbar" name="user_query">
-                    <button type="submit" class="btn border-0" value="Search"><img src="{% static 'images/UKBOA_NEW_LOGO_search_icon.png' %}" width = 30px></button> 
+      <div class="col-12">
+        <div class="row mt-5">
+            <div class="container text-center align-middle">
+              <img src ="{% static 'images/UKBOA_NEW_LOGO_WoB_Underlined.png' %}" alt="UKBOA" width=400px>
+                <div class = "container col-md-8">
+                  <div class="form-row align-items-center">
+                    <form method="GET" action="/results/" class="my-auto w-100 d-inline-block order-1">
+                      <div class="input-group">
+                        <input type="text" name="q" class="form-control border-top-0 border-left-0 border-right-0"
+                        placeholder="Search films, actors, directors or writers..." id="navbar_searchbar" name="user_query">
+                        <button type="submit" class="btn border-0" value="Search"><img src="{% static 'images/UKBOA_NEW_LOGO_search_icon.png' %}" width = 30px></button>
+                      </div>
+                    </form>
                   </div>
-                </form>
-              </div>
-              <ul class="nav justify-content-center">
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="/general_films_page"><strong>Films</strong></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" id="navbar_links text-white" href="/actor_overview"><strong>Actors</strong></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" id="navbar_links text-white" href="/director_overview"><strong>Directors</strong></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" id="navbar_links text-white" href="/writer_overview"><strong>Writers</strong></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" id="navbar_links text-white" href="/the_site"><strong>About</strong></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" id="navbar_links text-white" href="/contact"><strong>Contact</strong></a>
-                </li>
-              </ul>
+                  <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/general_films_page"><strong>Films</strong></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" id="navbar_links text-white" href="/actor_overview"><strong>Actors</strong></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" id="navbar_links text-white" href="/director_overview"><strong>Directors</strong></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" id="navbar_links text-white" href="/writer_overview"><strong>Writers</strong></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" id="navbar_links text-white" href="/the_site"><strong>About</strong></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" id="navbar_links text-white" href="/contact"><strong>Contact</strong></a>
+                    </li>
+                  </ul>
+                </div>
+            <div class="row mt-5">
+                <div class="container text-center align-middle">
+                <h6><em>A data visualization tool for the British box office since 2002</em></h6>
+                </div>
             </div>
       </div>
     </div>

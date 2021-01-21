@@ -30,14 +30,18 @@
                     <h2>£{{ director_detail.average_box_office_return |intcomma }} </h2></td>
                 </tr>
                 <tr>
-                  <td><h5>CAREER SCREEN AVERAGE</h5>
+                  <td><h5>CAREER SITE AVERAGE<sup>*</sup></h5>
                     <h2>£{{ director_detail.career_screen_average |intcomma }} </h2></td>
                   <td><h5>WEEKS IN UK CINEMAS</h5>
-                    <h2> {{ director_detail.weeks_at_uk_cinemas }} </h2></td>  
+                    <h2> {{ director_detail.weeks_at_uk_cinemas }} </h2></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><h6><sup>*</sup><em>A measure of a director's average box office
+                  revenue, adjusted for the number of cinemas in which their films appeared</em></h6></td>
                 </tr>
               </tbody>
             </table>
-          </div>  
+          </div>
         </div>
         <div class="col-md-4">
             <div class="well">
