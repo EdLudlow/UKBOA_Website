@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends 'front_end/base_templates/base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'front_end/about_page.css' %}">
+{% endblock %}
+
+{% block body-block %}
+
+ {% include 'front_end/base_components/navbar.html' %}
+    <div class="container mt-5">
+     <div class="jumbotron"style="background:transparent !important">
+      <h1 class="display-4">Whoops, something went wrong!</h1>
+      <p class="lead">This page is missing or doesn't exist</p>
+      <hr class="my-4">
+      </p>
+     </div>
+    </div>
+
+ {% endblock %}

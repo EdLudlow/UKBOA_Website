@@ -15,6 +15,10 @@ import collections
 ################################################################################################
 ################################################################################################
 
+def error_404_view(request, exception):
+    return render(request,'front_end/404.html')
+
+
 class HomePage(TemplateView):
     template_name = 'front_end/home_page.html'
 
@@ -40,13 +44,13 @@ class FilmPage(TemplateView):
         #Opening Weekend Pie Chart
         if film_instance.opening == film_instance.gross:
             pie_div = None
-            
+
         elif film_instance.opening:
             labels = ['Opening Weekend','Rest of Run']
             values = [film_instance.opening, (film_instance.gross-film_instance.opening)]
             trace3 = go.Figure(data=[go.Pie(labels=labels, values=values)])
             trace3.update_layout(
-                paper_bgcolor='black', 
+                paper_bgcolor='black',
                 plot_bgcolor='black',
                 title="Percentage of Box Office Gross account by Opening Weekend",
                 font=dict(family='Ramabhadra', size=13, color='white')
@@ -62,13 +66,13 @@ class FilmPage(TemplateView):
         for actor in film_actors:
             actor_data = Actor.objects.get(imdb_id=str(actor))
             actor_list.append(actor_data)
-        
+
         film_directors = film_instance.director.all()
         director_list = []
         for director in film_directors:
             director_data = Director.objects.get(imdb_id=str(director))
             director_list.append(director_data)
-        
+
         film_writers = film_instance.writers.all()
         writer_list = []
         for writer in film_writers:
@@ -118,9 +122,9 @@ class GeneralFilmsPage(TemplateView):
             xaxis={'showgrid':False},
             paper_bgcolor='black',
             plot_bgcolor='black',
-            title="Top 1000 films at the UK Box Office 2001-2020", 
+            title="Top 1000 films at the UK Box Office 2001-2020",
             font=dict(family='Ramabhadra', size=13, color='white'))
-            
+
         figure=go.Figure(data=data,layout=layout)
         div = plot(figure, auto_open=False, output_type='div')
 
@@ -133,7 +137,7 @@ class GeneralFilmsPage(TemplateView):
             annual_films = Film.objects.filter(release_date__year=f'{year}')
             top_annual_films = annual_films.order_by('-gross')[:10]
 
-            #create top annual film dictionaries 
+            #create top annual film dictionaries
             top_annual_film_dict[year] = top_annual_films
 
             for films in annual_films:
@@ -150,10 +154,10 @@ class GeneralFilmsPage(TemplateView):
                 layout=go.Layout(
                     title="Cumulative Yearly Takings at UK Box Office 2001-2020 (all films)",
                     yaxis_title="Yearly Cumulative Gross",
-                    paper_bgcolor='black', 
+                    paper_bgcolor='black',
                     plot_bgcolor='black',
                     font=dict(family='Ramabhadra', size=13, color='white'),
-                    xaxis={'showgrid':False}, 
+                    xaxis={'showgrid':False},
                 )
             )
 
@@ -206,7 +210,7 @@ class ActorOverview(TemplateView):
                 paper_bgcolor='black',
                 plot_bgcolor='black',
                 title="Top 5 Actors by Gross",
-                yaxis={'showgrid':False}, 
+                yaxis={'showgrid':False},
             )
         )
 
@@ -234,7 +238,7 @@ class ActorOverview(TemplateView):
                 paper_bgcolor='black',
                 plot_bgcolor='black',
                 title="Top 5 Actors by Length of Time at Box Office",
-                yaxis={'showgrid':False}, 
+                yaxis={'showgrid':False},
             )
         )
 
@@ -304,7 +308,7 @@ class ActorOverviewTopAtBO(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ActorOverviewTopAtBO, self).get_context_data(**kwargs)
-        
+
         context.update({
             'actors_gross': Actor.objects.all().order_by('-career_gross')[0:100],
         })
@@ -315,7 +319,7 @@ class ActorOverviewLengthAtBO(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ActorOverviewLengthAtBO, self).get_context_data(**kwargs)
-        
+
         context.update({
             'actors_bo_length': Actor.objects.all().order_by('-weeks_at_uk_cinemas')[0:100],
             })
@@ -327,7 +331,7 @@ class ActorOverviewNumFilms(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ActorOverviewNumFilms, self).get_context_data(**kwargs)
-        
+
         context.update({
             'actors_num_films': Actor.objects.all().order_by('-num_of_films')[0:100],
             })
@@ -372,7 +376,7 @@ class DirectorOverview(TemplateView):
                 paper_bgcolor='black',
                 plot_bgcolor='black',
                 title="Top 5 Directors by Gross",
-                yaxis={'showgrid':False}, 
+                yaxis={'showgrid':False},
             )
         )
 
@@ -400,7 +404,7 @@ class DirectorOverview(TemplateView):
                 paper_bgcolor='black',
                 plot_bgcolor='black',
                 title="Top 5 Directors by Length of Time at Box Office",
-                yaxis={'showgrid':False}, 
+                yaxis={'showgrid':False},
             )
         )
 
@@ -427,7 +431,7 @@ class DirectorOverview(TemplateView):
                 font=dict(family='Ramabhadra', size=13, color='white'),
                 paper_bgcolor='black',
                 plot_bgcolor='black',
-                title="The 5 Directors by No. of Films", 
+                title="The 5 Directors by No. of Films",
                 yaxis={'showgrid':False},
             )
         )
@@ -469,7 +473,7 @@ class DirectorOverviewTopAtBO(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(DirectorOverviewTopAtBO, self).get_context_data(**kwargs)
-        
+
         context.update({
             'directors_gross': Director.objects.all().order_by('-career_gross')[0:100],
         })
@@ -480,7 +484,7 @@ class DirectorOverviewLengthAtBO(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(DirectorOverviewLengthAtBO, self).get_context_data(**kwargs)
-        
+
         context.update({
             'directors_bo_length': Director.objects.all().order_by('-weeks_at_uk_cinemas')[0:100],
             })
@@ -492,7 +496,7 @@ class DirectorOverviewNumFilms(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(DirectorOverviewNumFilms, self).get_context_data(**kwargs)
-        
+
         context.update({
             'directors_num_films': Director.objects.all().order_by('-num_of_films')[0:100],
             })
@@ -537,7 +541,7 @@ class WriterOverview(TemplateView):
                 paper_bgcolor='black',
                 plot_bgcolor='black',
                 title="Top 5 Writers by Gross",
-                yaxis={'showgrid':False}, 
+                yaxis={'showgrid':False},
             )
         )
 
@@ -565,7 +569,7 @@ class WriterOverview(TemplateView):
                 paper_bgcolor='black',
                 plot_bgcolor='black',
                 title="Top 5 Writers by Length of Time at Box Office",
-                yaxis={'showgrid':False}, 
+                yaxis={'showgrid':False},
             )
         )
 
@@ -592,7 +596,7 @@ class WriterOverview(TemplateView):
                 font=dict(family='Ramabhadra', size=13, color='white'),
                 paper_bgcolor='black',
                 plot_bgcolor='black',
-                title="The 5 Writers by No. of Films", 
+                title="The 5 Writers by No. of Films",
                 yaxis={'showgrid':False},
             )
         )
@@ -633,7 +637,7 @@ class WriterOverviewTopAtBO(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(WriterOverviewTopAtBO, self).get_context_data(**kwargs)
-        
+
         context.update({
             'writers_gross': Writer.objects.all().order_by('-career_gross')[0:100],
         })
@@ -644,7 +648,7 @@ class WriterOverviewLengthAtBO(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(WriterOverviewLengthAtBO, self).get_context_data(**kwargs)
-        
+
         context.update({
             'writers_bo_length': Writer.objects.all().order_by('-weeks_at_uk_cinemas')[0:100],
             })
@@ -656,7 +660,7 @@ class WriterOverviewNumFilms(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(WriterOverviewNumFilms, self).get_context_data(**kwargs)
-        
+
         context.update({
             'writer_num_films': Writer.objects.all().order_by('-num_of_films')[0:100],
             })
@@ -695,7 +699,7 @@ class ActorPage(TemplateView):
             gross_value_list.append(values[1])
             title_value_list.append(values[2])
             opening_value_list.append(values[5])
-        
+
         trace1 = go.Scatter(x=release_date_value_list, y=gross_value_list, marker={'color': 'red'}, hovertext = title_value_list,
                     mode="markers+text", name='1st Trace')
         data=go.Data([trace1])
@@ -703,14 +707,14 @@ class ActorPage(TemplateView):
             title="Actor's Films by Total Gross earned at the British Box Office",
             xaxis={'showgrid':False},
             yaxis={'title':'Gross','showgrid':False},
-            paper_bgcolor='black', 
+            paper_bgcolor='black',
             plot_bgcolor='black',
             font=dict(family='Ramabhadra', size=13, color='white'),
             )
-            
+
         figure=go.Figure(data=data,layout=layout)
         scatter_div = plot(figure, auto_open=False, output_type='div')
-        
+
         ### Bar Chart
         trace2 = go.Figure(
                 data=[
@@ -732,7 +736,7 @@ class ActorPage(TemplateView):
                     font=dict(family='Ramabhadra', size=13, color='white'),
                     xaxis={'showgrid':False},
                     paper_bgcolor='black',
-                    plot_bgcolor='black', 
+                    plot_bgcolor='black',
                 )
             )
 
@@ -776,7 +780,7 @@ class DirectorPage(TemplateView):
             gross_value_list.append(values[1])
             title_value_list.append(values[2])
             opening_value_list.append(values[5])
-        
+
         trace1 = go.Scatter(x=release_date_value_list, y=gross_value_list, marker={'color': 'red'}, hovertext = title_value_list,
                     mode="markers+text", name='1st Trace')
         data=go.Data([trace1])
@@ -784,7 +788,7 @@ class DirectorPage(TemplateView):
             title="Director's Films by Total Gross earned at the British Box Office",
             xaxis={'showgrid':False},
             yaxis={'title':'Gross','showgrid':False},
-            paper_bgcolor='black', 
+            paper_bgcolor='black',
             plot_bgcolor='black',
             font=dict(family='Ramabhadra', size=13, color='white'),
             )
@@ -812,7 +816,7 @@ class DirectorPage(TemplateView):
                     barmode='overlay',
                     font=dict(family='Ramabhadra', size=13, color='white'),
                     paper_bgcolor='black',
-                    plot_bgcolor='black', 
+                    plot_bgcolor='black',
                 )
             )
 
@@ -855,14 +859,14 @@ class WriterPage(TemplateView):
             gross_value_list.append(values[1])
             title_value_list.append(values[2])
             opening_value_list.append(values[5])
-        
+
         trace1 = go.Scatter(x=release_date_value_list, y=gross_value_list, marker={'color': 'red'}, hovertext = title_value_list,
                     mode="markers+text", name='1st Trace')
         data=go.Data([trace1])
         layout=go.Layout(
             xaxis={'showgrid':False},
             yaxis={'title':'Gross','showgrid':False},
-            paper_bgcolor='black', 
+            paper_bgcolor='black',
             plot_bgcolor='black',
             font=dict(family='Ramabhadra', size=13, color='white'),
             )
@@ -889,7 +893,7 @@ class WriterPage(TemplateView):
                     barmode='overlay',
                     font=dict(family='Ramabhadra', size=13, color='white'),
                     paper_bgcolor='black',
-                    plot_bgcolor='black', 
+                    plot_bgcolor='black',
                 )
             )
 
@@ -917,7 +921,7 @@ class SearchResults(ListView):
     template_name = 'front_end/navigation_pages/search_page.html'
     context_object_name = 'query'
     paginate_by = 10
-    
+
     def get_queryset(self):
         query_param = self.request.GET['q']
 
